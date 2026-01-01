@@ -231,3 +231,58 @@ Database: MySQL
 Validation: Jakarta Validation API
 
 Auditing: Spring Data JPA Auditing
+
+
+## 질문 답변
+### 1. 3 Layer Architecture(Controller, Service, Repository)를 적절히 적용했는지 확인해 보고, 왜 이러한 구조가 필요한지 작성해 주세요.
+* Controller -> ScheduleController, CommentController
+* Service -> ScheduleService, CommentService
+* Repository -> ScheduleRepository, CommentRepository
+
+3 Layer 구조는 관심사 분리, 재사용성, 테스트 용이성, 유지 보수성 때문에 필요하다.
+
+### 2. @RequestParam, @PathVariable, @RequestBody가 각각 어떤 어노테이션인지, 어떤 특징을 갖고 있는지 작성해 주세요.
+#### 1. @RequestParam
+용도: 쿼리 파라미터(GET 요청의 ?key=value)를 메서드 매개변수로 매핑
+
+특징
+* Optional 설정 가능 (required=false)
+* 기본값 지정 가능 (defaultValue="값")
+
+예시
+```java
+@GetMapping("/api/schedules")
+public List<ScheduleResponseDto> getSchedules(@RequestParam(required = false) String author)
+```
+
+/api/schedules?author=kim → author="kim"
+
+/api/schedules → author=null
+
+### 2. @PathVariable
+용도: URL 경로에 포함된 값을 메서드 매개변수로 매핑
+
+특징
+* URL에 포함된 값만 가능
+
+예시
+```java
+@GetMapping("/api/schedules/{id}")
+public ScheduleResponseDto getSchedule(@PathVariable Long id)
+```
+
+/api/schedules/1 → id=1
+
+### 3. @RequestBody
+용도: HTTP 요청 Body(JSON 등)를 DTO 객체로 변환
+
+특징
+* JSON → Java 객체 변환 (Spring + Jackson)
+* POST, PUT, DELETE 등 Body 있는 요청에서 사용
+* DTO 검증(@Valid)과 함께 사용 가능
+
+예시
+```java
+@PostMapping("/api/schedules")
+public ScheduleResponseDto createSchedule(@RequestBody @Valid ScheduleCreateRequestDto requestDto)
+```
