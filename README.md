@@ -223,7 +223,11 @@ Error (400 Bad Request)
 
 ## 기술 스택
 Framework: Spring Boot 4.0.1
+
 ORM: JPA/Hibernate
+
 Database: MySQL
+
 Validation: Jakarta Validation API
+
 Auditing: Spring Data JPA Auditing
