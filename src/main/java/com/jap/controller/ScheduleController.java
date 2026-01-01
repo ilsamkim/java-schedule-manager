@@ -3,6 +3,7 @@ package com.jap.controller;
 import com.jap.dto.*;
 import com.jap.entity.Schedule;
 import com.jap.service.ScheduleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class ScheduleController {
     // 일정 생성
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> createSchedule(
-            @RequestBody ScheduleCreateRequestDto requestDto
+            @RequestBody @Valid ScheduleCreateRequestDto requestDto
     ) {
         Schedule schedule = scheduleService.createSchedule(
                 requestDto.getTitle(),

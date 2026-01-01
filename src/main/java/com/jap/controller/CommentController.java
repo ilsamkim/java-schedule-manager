@@ -3,6 +3,7 @@ package com.jap.controller;
 import com.jap.dto.CommentCreateRequestDto;
 import com.jap.dto.CommentResponseDto;
 import com.jap.service.CommentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class CommentController {
     @PostMapping
     public ResponseEntity<CommentResponseDto> createComment(
             @PathVariable Long scheduleId,
-            @RequestBody CommentCreateRequestDto requestDto
+            @RequestBody @Valid CommentCreateRequestDto requestDto
     ) {
         CommentResponseDto responseDto = commentService.createComment(
                 scheduleId,
