@@ -8,22 +8,16 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name ="schedule")
-@EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor
-public class Schedule {
+@EntityListeners(AuditingEntityListener.class)
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
@@ -41,18 +35,14 @@ public class Schedule {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    public Schedule(String title, String content, String author, String password) {
-        this.title = title;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_id", nullable = false)
+    private Schedule schedule;
+
+    public Comment(String content, String author, String password, Schedule schedule) {
         this.content = content;
         this.author = author;
         this.password = password;
+        this.schedule = schedule;
     }
-
-    public void update(String title, String author) {
-        this.title = title;
-        this.author = author;
-    }
-
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
 }
