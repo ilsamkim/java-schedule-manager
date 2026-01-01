@@ -1,6 +1,7 @@
 package com.jap.controller;
 
 import com.jap.dto.ScheduleCreateRequestDto;
+import com.jap.dto.ScheduleDeleteRequestDto;
 import com.jap.dto.ScheduleResponseDto;
 import com.jap.dto.ScheduleUpdateRequestDto;
 import com.jap.entity.Schedule;
@@ -66,5 +67,15 @@ public class ScheduleController {
         );
 
         return ResponseEntity.ok(responseDto);
+    }
+
+    // 일정 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSchedule(
+            @PathVariable Long id,
+            @RequestBody ScheduleDeleteRequestDto requestDto
+    ) {
+        scheduleService.deleteSchedule(id, requestDto.getPassword());
+        return ResponseEntity.noContent().build();
     }
 }
