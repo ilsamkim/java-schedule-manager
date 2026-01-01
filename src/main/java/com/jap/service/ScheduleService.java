@@ -1,5 +1,6 @@
 package com.jap.service;
 
+import com.jap.dto.ScheduleDetailResponseDto;
 import com.jap.dto.ScheduleResponseDto;
 import com.jap.entity.Schedule;
 import com.jap.repository.ScheduleRepository;
@@ -40,10 +41,10 @@ public class ScheduleService {
     }
 
     // 단건 일정 조회
-    public ScheduleResponseDto getSchedule(Long id) {
+    public ScheduleDetailResponseDto getScheduleDetail(Long id) {
         Schedule schedule = scheduleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 일정이 존재하지 않습니다."));
-        return new ScheduleResponseDto(schedule);
+        return new ScheduleDetailResponseDto(schedule);
     }
 
     // 일정 수정

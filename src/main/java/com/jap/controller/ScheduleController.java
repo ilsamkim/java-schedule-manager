@@ -1,9 +1,6 @@
 package com.jap.controller;
 
-import com.jap.dto.ScheduleCreateRequestDto;
-import com.jap.dto.ScheduleDeleteRequestDto;
-import com.jap.dto.ScheduleResponseDto;
-import com.jap.dto.ScheduleUpdateRequestDto;
+import com.jap.dto.*;
 import com.jap.entity.Schedule;
 import com.jap.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
@@ -47,10 +44,10 @@ public class ScheduleController {
 
     // 선택 일정 단건 조회
     @GetMapping("/{id}")
-    public ResponseEntity<ScheduleResponseDto> getSchedule(
+    public ResponseEntity<ScheduleDetailResponseDto> getSchedule(
             @PathVariable Long id
     ) {
-        return ResponseEntity.ok(scheduleService.getSchedule(id));
+        return ResponseEntity.ok(scheduleService.getScheduleDetail(id));
     }
 
     // 일정 수정
