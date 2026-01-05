@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 @Getter
 public class CommentResponseDto {
 
-    private Long id;
-    private String content;
-    private String author;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private final Long id;
+    private final String content;
+    private final String author;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime updatedAt;
 
     public CommentResponseDto(Comment comment) {
         this.id = comment.getId();

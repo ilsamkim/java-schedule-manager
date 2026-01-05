@@ -10,15 +10,15 @@ import java.util.stream.Collectors;
 @Getter
 public class ScheduleDetailResponseDto {
 
-    private Long id;
-    private String title;
-    private String content;
-    private String author;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private final Long id;
+    private final String title;
+    private final String content;
+    private final String author;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime updatedAt;
 
     // 댓글 목록
-    private List<CommentResponseDto> comments;
+    private final List<CommentResponseDto> comments;
 
     public ScheduleDetailResponseDto(Schedule schedule) {
         this.id = schedule.getId();
