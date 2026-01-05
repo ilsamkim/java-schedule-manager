@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name ="schedule")
+@Table(name ="schedules")
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor
